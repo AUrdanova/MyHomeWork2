@@ -18,6 +18,7 @@ public class Activity2 extends AppCompatActivity {
     public static final String KEY_TEXT = "txtKey";
     public static final String KEY_IMG = "imgKey";
     private static Uri uri;
+    private static String txtUri = "";
 
 
 
@@ -31,6 +32,8 @@ public class Activity2 extends AppCompatActivity {
     }
 
     private void init() {
+        imageView = findViewById(R.id.imageTwo);
+        editText = findViewById(R.id.edit_second);
 
     }
 
@@ -44,7 +47,7 @@ public class Activity2 extends AppCompatActivity {
         String text = editText.getText().toString();
         Intent intent = new Intent();
         intent.putExtra(KEY_TEXT, text);
-        intent.putExtra(KEY_IMG, uri.toString());
+        intent.putExtra(KEY_IMG, txtUri);
         setResult(RESULT_OK, intent);
         finish();
     }
@@ -54,6 +57,7 @@ public class Activity2 extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 1 && resultCode == RESULT_OK && data != null) {
             uri = data.getData();
+            txtUri = uri.toString();
             imageView.setImageURI(uri);
         }
 
